@@ -1,0 +1,14 @@
+.goal {
+  position: absolute;
+  left: -10px;
+}
+
+.assist {
+  position: absolute;
+  left: 0px;
+}
+
+.motm {
+  position: absolute;
+  left: 10px;
+}

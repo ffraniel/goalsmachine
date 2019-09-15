@@ -1,6 +1,6 @@
 import "./PlayersList.css";
 import React from "react";
-import star from '../assets/star-icon.png';
+import {Medals} from './Medals';
 
 export const PlayersList = ({ 
     players, 
@@ -8,6 +8,16 @@ export const PlayersList = ({
     handleSetEditMode,
     editPlayer
   }) => {
+
+  let topGoal = players.sort((a, b)=>{
+    return b.goals - a.goals;
+  })[0];
+  let topAssist = players.sort((a, b)=>{
+    return b.assists - a.assists;
+  })[0];
+  let topMOTM = players.sort((a, b)=>{
+    return b.motm - a.motm;
+  })[0];
 
   return (
     <section className="player-list">
@@ -18,16 +28,24 @@ export const PlayersList = ({
           goals,
           assists, 
           motm,
-          img,
-          medals,
+          // img,
+          // medals,
           position,
           id
         } = player;
 
+        let showMedals = false;
+        if (player.id === topGoal.id || player.id === topAssist.id || player.id === topMOTM.id) {
+          showMedals = true;
+        }
+
+
         return (
           <section className="player-card" key={name}>
             <div className="player-card-img-container">
-              {medals.length > 0 && <img className="medal" src={star} alt="top scorer medal" />}
+              {showMedals &&
+                <Medals topGoal={topGoal} topAssist={topAssist} topMOTM={topMOTM} />
+              }
               <img
                 className="player-image"
                 src="https://i.pravatar.cc/220"
