@@ -1,22 +1,101 @@
 import './Dashboard.css';
 import React, { useState } from 'react';
 import {AdminMenu} from './AdminMenu';
-import star from '../assets/star-icon.png';
+import {PlayersList} from './PlayersList';
 
-export const Dashboard = (props) => {
-  const { loggedIn, setLoggedIn } = props;
+export const Dashboard = ({loggedIn, setLoggedIn}) => {
+
   const [ filterValue, setFilterValue] = useState('all');
 
+  let user = 'Fran';
+  const allPlayers = [
+    {
+      name: 'Andy',
+      goals: 22,
+      assists: 15,
+      motm: 6, 
+      img: '',
+      medals: ['goals'], 
+      position: 'Striker'
+    },
+    {
+      name: 'Ben', 
+      goals: 15,
+      assists: 12,
+      motm: 3,
+      img: '',
+      medals: [],
+      position: 'Midfield'
+    },
+    {
+      name: 'Fran',
+      goals: 8,
+      assists: 10,
+      motm: 2,
+      img: '',
+      medals: [],
+      position: 'Defender'
+    },
+    {
+      name: 'James',
+      goals: 10,
+      assists: 5, 
+      motm: 5,
+      img: '',
+      medals: [],
+      position: 'Defender'
+    },
+    {
+      name: 'Callum',
+      goals: 0,
+      assists: 0, 
+      motm: 8,
+      img: '',
+      medals: [],
+      position: 'GoalKeeper'
+    },
+    {
+      name: 'Dave',
+      goals: 14,
+      assists: 9, 
+      motm: 3,
+      img: '',
+      medals: [],
+      position: 'Midfield'
+    },
+    // {
+    //   name: '',
+    //   goals: 0,
+    //   assists: 0, 
+    //   motm: 0,
+    //   img: '',
+    //   medals: [],
+    //   position: ''
+    // }
+  ];
+
+  const [players, setPlayers] = useState(allPlayers);
+
   const setFilterAction = (e) => {
-    setFilterValue(e.target.value);
-    console.log(filterValue)
+    let selection = e.target.value;
+    setFilterValue(selection);
+
+    if (selection === 'all') {
+      setPlayers(allPlayers);
+    } else {
+      let sortedPlayers = allPlayers.sort((a, b) => {
+        return b[selection] - a[selection];
+      });
+      setPlayers(sortedPlayers);
+    }
   };
 
   return (
     <section className="dashboard">
-      {loggedIn && <AdminMenu />}
+      <AdminMenu user={user} setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+
       <section className="options">
-        <h4>Currently Showing {filterValue}</h4>
+        <h4>Showing {filterValue}</h4>
         <select onChange={setFilterAction}>
           <option value="all">All</option>
           <option value="goals">Goals</option>
@@ -25,44 +104,7 @@ export const Dashboard = (props) => {
         </select>
       </section>
 
-      <section className="player-list">
-
-        <section className="player-card">
-          <div className="player-card-img-container">
-            <img className="medal" src={star} alt="top scorer medal" />
-            <img className="player-image" src="https://i.pravatar.cc/220" alt="" />
-          </div>
-          <h4>Andy McNab</h4>
-          <h5>Goals 18</h5>
-          <h5>Assists 12</h5>
-          <h5>MOTM 5</h5>
-          <p>Position Striker</p>
-        </section>
-
-        <section className="player-card">
-          <div className="player-card-img-container">
-            <img className="player-image" src="https://i.pravatar.cc/220" alt="" />
-          </div>
-          <h4>Fran Whitehead</h4>
-          <h5>Goals 5</h5>
-          <h5>Assists 8</h5>
-          <h5>MOTM 2</h5>
-          <p>Position Defender</p>
-        </section>
-
-
-        <section className="player-card">
-          <div className="player-card-img-container">
-            <img className="player-image" src="https://i.pravatar.cc/220" alt="" />
-          </div>
-          <h4>Ben Karlin</h4>
-          <h5>Goals 12</h5>
-          <h5>Assists 9</h5>
-          <h5>MOTM 5</h5>
-          <p>Position Midfield</p>
-        </section>
-
-      </section>
+      <PlayersList players={players} />
 
     </section>
   )

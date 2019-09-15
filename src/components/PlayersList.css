@@ -1,0 +1,30 @@
+.player-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-gap: 10px;
+  width: 80%;
+  margin: 0 auto 60px auto;
+}
+
+.player-card {
+  /* border: solid red 1px; */
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px 2px rgb(194, 193, 193);
+}
+
+.player-card-img-container {
+  position: relative;
+}
+
+.player-image {
+  border-radius: 3px;
+  color: red;
+}
+
+.player-card-img-container .medal {
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  right: 50px;
+}
