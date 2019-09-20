@@ -5,6 +5,7 @@ import {PlayersList} from './PlayersList';
 import {EditDialogue} from './EditDialogue';
 import {allPlayers} from '../assets/players';
 
+
 export const Dashboard = ({
     loggedIn, 
     setLoggedIn
@@ -18,8 +19,8 @@ export const Dashboard = ({
   const [editPlayer, setEditPlayer] = useState(null);
 
   
-  const setFilterAction = (e) => {
-    let selection = e.target.value;
+  const setFilterAction = (selection) => {
+    // let selection = e.target.value;
     setFilterValue(selection);
     
     if (selection === 'all') {
@@ -58,17 +59,13 @@ export const Dashboard = ({
 
   return (
     <section className="dashboard">
-      <AdminMenu user={user} setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
-
-      <section className="options">
-        <h4>Showing {filterValue}</h4>
-        <select onChange={setFilterAction}>
-          <option value="all">All</option>
-          <option value="goals">Goals</option>
-          <option value="assists">Assists</option>
-          <option value="motm">MOTM</option>
-        </select>
-      </section>
+      <AdminMenu 
+        user={user} 
+        setLoggedIn={setLoggedIn} 
+        loggedIn={loggedIn} 
+        filterValue={filterValue} 
+        setFilterAction={setFilterAction}
+      />
 
       {editPlayer && loggedIn &&
         <EditDialogue 

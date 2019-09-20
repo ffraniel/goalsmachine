@@ -1,8 +1,8 @@
 .player-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
   grid-gap: 10px;
-  width: 80%;
+  max-width: 75%;
   margin: 0 auto 60px auto;
 }
 
@@ -11,6 +11,7 @@
   padding: 20px;
   border-radius: 3px;
   box-shadow: 0 3px 10px 2px rgb(194, 193, 193);
+  font-size: 1.25rem;
 }
 
 .player-card-img-container {
@@ -27,4 +28,20 @@
   position: absolute;
   top: 5px;
   right: 50px;
+}
+
+.goals-icon {
+  width: 20px;
+}
+
+.assists-icon {
+  width: 20px;
+}
+
+.motm-icon {
+  width: 20px;
+}
+
+.icon-margin-down {
+  margin-bottom: -5px;
 }

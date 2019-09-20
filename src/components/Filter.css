@@ -1,0 +1,28 @@
+.options {
+  margin: 20px 0;
+}
+
+.options h4 {
+  margin: 10px 0;
+}
+
+.select-button {
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(233, 196, 202);
+  transition: background-color 0.2s;
+  font-size: 0.9rem;
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+  min-height: 40px;
+}
+
+.select-button .button-icon {
+  height: 25px;
+}
+
+.selected {
+  background-color: rgb(218, 86, 108);
+}

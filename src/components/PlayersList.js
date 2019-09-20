@@ -1,6 +1,9 @@
 import "./PlayersList.css";
 import React from "react";
 import {Medals} from './Medals';
+import goalsIcon from '../assets/goal.svg';
+import creativeIcon from '../assets/new-idea.svg';
+import motmIcon from '../assets/badge.svg';
 
 export const PlayersList = ({ 
     players, 
@@ -53,9 +56,9 @@ export const PlayersList = ({
               />
             </div>
             <h4>{name}</h4>
-            <h5>Goals {goals}</h5>
-            <h5>Assists {assists}</h5>
-            <h5>MOTM {motm}</h5>
+            <h5><img className="goals-icon icon-margin-down" alt="Goals scored" src={goalsIcon}/> Goals {goals}</h5>
+            <h5><img alt="Goals created" src={creativeIcon} className="assists-icon icon-margin-down" /> Assists {assists}</h5>
+            <h5><img alt="Man of the match" src={motmIcon} className="motm-icon icon-margin-down" /> MOTM {motm}</h5>
             <p>{position}</p>
             {loggedIn &&
               <>
